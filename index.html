@@ -3,192 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منظومة صرح التابعين | غزة - النصيرات</title>
+    <title>منظومة صرح التابعين | غزة</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body { font-family: 'Tajawal', sans-serif; transition: all 0.3s ease; }
+        .page { display: none; } /* إخفاء كل الصفحات افتراضياً */
+        .page.active { display: block; } /* إظهار الصفحة النشطة فقط */
+        .btn-gold { background: linear-gradient(to right, #d4af37, #f1c40f); color: white; border-radius: 12px; font-weight: bold; transition: 0.3s; }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
+    </style>
 </head>
-<body class="bg-slate-50 font-[Tajawal]">
+<body class="bg-slate-50 text-slate-800">
 
-    <div class="bg-blue-900 text-white py-2 overflow-hidden shadow-lg">
-        <div class="animate-marquee whitespace-nowrap flex gap-10 text-[11px] font-black uppercase">
-            <span>🔹 صرح التابعين: غزة - النصيرات - المخيم الجديد - بجوار مدرسة العروبة</span>
-            <span>🔹 بإشراف الأستاذ إسماعيل نوفل.. جيلٌ قرآني متميز على خطى التابعين</span>
-            <span>🔹 كفالتك لحافظ هي نور لك في قبرك.. ساهم في الوقف القرآني الآن</span>
-        </div>
-    </div>
-
-    <nav class="bg-white/95 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-100 shadow-sm">
+    <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-4 cursor-pointer" onclick="goToPage('home')">
-                <div class="w-12 h-12 bg-blue-900 rounded-2xl flex items-center justify-center text-white text-xl shadow-xl">
-                    <i class="fas fa-quran"></i>
-                </div>
-                <div>
-                    <h1 class="text-xl font-black text-blue-900 leading-none">صرح التابعين</h1>
-                    <p class="text-[9px] text-amber-600 font-bold mt-1 tracking-widest uppercase">The Imperial Center</p>
-                </div>
+            <div class="flex items-center gap-3 cursor-pointer" onclick="goToPage('home')">
+                <div class="w-10 h-10 bg-blue-900 rounded-lg flex items-center justify-center text-white"><i class="fas fa-quran"></i></div>
+                <h1 class="text-xl font-black text-blue-900">صرح التابعين</h1>
             </div>
-            
-            <div class="hidden lg:flex gap-10 font-black text-[11px] text-blue-900 uppercase">
-                <button onclick="goToPage('home')" class="hover:text-amber-600 transition">الرئيسية</button>
-                <button onclick="goToPage('studentPortal')" class="hover:text-amber-600 transition">بوابة الطالب</button>
-                <button onclick="goToPage('registration')" class="hover:text-amber-600 transition">سجل طفلك</button>
-                <button onclick="goToPage('donation')" class="hover:text-amber-600 transition text-amber-600">الوقف القرآني</button>
+            <div class="hidden md:flex gap-6 font-bold text-sm text-blue-900">
+                <button onclick="goToPage('home')" class="hover:text-amber-600">الرئيسية</button>
+                <button onclick="goToPage('studentPortal')" class="hover:text-amber-600">بوابة الطالب</button>
+                <button onclick="goToPage('registration')" class="hover:text-amber-600">سجل طفلك</button>
             </div>
-
-            <button onclick="goToPage('loginGate')" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase shadow-lg transition-all">
-                دخول المسؤولين <i class="fas fa-shield-halved mr-2"></i>
-            </button>
+            <button onclick="goToPage('loginGate')" class="btn-gold px-4 py-2 text-xs uppercase">دخول المحفظين</button>
         </div>
     </nav>
 
     <main class="min-h-screen">
-        
-        <section id="home" class="page active max-w-7xl mx-auto px-6 py-20 animate-fade-in">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="space-y-10">
-                    <div class="inline-flex items-center gap-3 bg-blue-50 text-blue-900 px-6 py-2 rounded-full text-[10px] font-black border border-blue-100">
-                        <i class="fas fa-star text-amber-500"></i> مجمع التابعين القرآني - النصيرات
-                    </div>
-                    <h2 class="text-7xl font-black text-blue-900 leading-[1.1]">نورٌ في قلب <br> <span class="text-amber-600 font-amiri italic font-normal">مخيمنا</span></h2>
-                    <p class="text-xl text-gray-500 font-medium leading-relaxed max-w-lg italic">"جيلٌ يحفظ القرآن، ليعمر الأكوان.. انضموا إلينا في رحلة النور."</p>
-                    <div class="flex flex-wrap gap-5">
-                        <button onclick="goToPage('registration')" class="bg-blue-900 text-white px-12 py-6 rounded-2xl font-black text-lg shadow-2xl hover:scale-105 transition-all">انضم إلينا الآن</button>
-                        <button onclick="goToPage('studentPortal')" class="bg-white border-2 border-gray-100 px-10 py-5 rounded-2xl font-black hover:bg-gray-50 transition">بوابة الطالب</button>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <img src="https://images.unsplash.com/photo-1590076175574-e8893110534b?q=80&w=1000" class="rounded-[60px] shadow-3xl border-[12px] border-white transform hover:scale-[1.02] transition-transform duration-700">
+        <section id="home" class="page active max-w-7xl mx-auto px-6 py-20">
+            <div class="text-center space-y-8">
+                <h2 class="text-6xl font-black text-blue-900 leading-tight">صرح التابعين القرآني</h2>
+                <p class="text-xl text-gray-500 max-w-2xl mx-auto italic">"نورٌ في قلب غزة، نصنع جيلاً يحفظ القرآن ويحمله في قلبه وعقله."</p>
+                <div class="flex justify-center gap-4">
+                    <button onclick="goToPage('studentPortal')" class="btn-gold px-10 py-5 text-lg shadow-xl">ملف متابعة الطالب</button>
                 </div>
             </div>
         </section>
 
-        <section id="studentPortal" class="page max-w-5xl mx-auto px-6 py-12 hidden animate-fade-in">
-            <div id="studentLoginSection" class="max-w-md mx-auto text-center py-20">
-                <div class="w-20 h-20 bg-blue-900 rounded-3xl mx-auto mb-6 flex items-center justify-center text-white text-3xl shadow-xl">
-                    <i class="fas fa-user-graduate"></i>
-                </div>
-                <h3 class="text-3xl font-black text-blue-900 mb-6 font-amiri italic">ملف المتابعة الإلكتروني</h3>
-                <input type="text" id="studentID" class="w-full p-5 bg-white border-2 border-gray-100 rounded-2xl text-center text-2xl font-black mb-4 focus:border-amber-500 outline-none transition-all" placeholder="أدخل رقم الـ ID">
-                <button onclick="fetchStudentData()" id="stdQueryBtn" class="w-full bg-amber-500 text-white py-5 rounded-2xl font-black text-lg shadow-xl hover:bg-amber-600 transition-all">فتح الملف الشخصي</button>
+        <section id="studentPortal" class="page max-w-4xl mx-auto px-6 py-12">
+            <div id="studentLoginSection" class="bg-white p-10 rounded-3xl shadow-xl text-center border-2 border-blue-50">
+                <h3 class="text-3xl font-black text-blue-900 mb-6 font-amiri">ملف المتابعة الإلكتروني</h3>
+                <input type="text" id="studentID" class="w-full p-4 bg-slate-50 border-2 border-gray-100 rounded-xl text-center text-2xl font-black mb-4 outline-none focus:border-amber-500" placeholder="أدخل رقم الـ ID">
+                <button onclick="fetchStudentData()" id="stdQueryBtn" class="w-full btn-gold py-5 text-xl">فتح الملف</button>
             </div>
 
-            <div id="studentDisplayArea" class="hidden">
-                <div class="bg-white rounded-[50px] p-10 shadow-sm border border-gray-100 mb-10 flex flex-col md:flex-row justify-between items-center gap-8">
-                    <div class="flex items-center gap-8">
-                        <div id="avatarLetter" class="w-24 h-24 bg-gradient-to-br from-blue-900 to-blue-700 rounded-3xl flex items-center justify-center text-white text-4xl font-black shadow-2xl">أ</div>
-                        <div>
-                            <h2 id="displayName" class="text-4xl font-black text-blue-900">...</h2>
-                            <p id="displayRing" class="text-amber-600 font-bold mt-2 text-sm italic uppercase tracking-wider"></p>
-                        </div>
-                    </div>
-                    <button onclick="logout()" class="bg-red-50 text-red-600 px-8 py-3 rounded-2xl font-black text-xs hover:bg-red-100 transition">تسجيل الخروج</button>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white rounded-[50px] p-12 border border-gray-100 shadow-sm">
-                        <h3 class="text-2xl font-black text-blue-900 mb-12 flex items-center gap-4">
-                            <i class="fas fa-map-marked-alt text-amber-600"></i> خريطتك نحو الختمة
-                        </h3>
-                        <div id="journeyDots" class="flex flex-wrap justify-center gap-3"></div>
-                        <p id="journeyText" class="mt-10 text-center font-black text-blue-900 italic text-lg"></p>
-                    </div>
-                    
-                    <div class="space-y-8">
-                        <div class="bg-white p-10 rounded-[40px] border border-gray-100 shadow-sm">
-                            <h4 class="text-xs font-black text-gray-400 uppercase mb-4">تقييم اليوم</h4>
-                            <p id="displayGrade" class="text-3xl font-black text-blue-900">---</p>
-                        </div>
-                        <div class="bg-white p-10 rounded-[40px] border border-gray-100 shadow-sm">
-                            <h4 class="text-xs font-black text-gray-400 uppercase mb-4">تسميع اليوم</h4>
-                            <p id="displayToday" class="text-lg font-bold text-gray-700">---</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-8 bg-blue-900 text-white p-12 rounded-[50px] shadow-2xl relative overflow-hidden">
-                    <i class="fas fa-quote-right absolute top-5 left-5 text-white/10 text-9xl"></i>
-                    <h4 class="text-xs font-black text-amber-400 uppercase mb-4 relative z-10">رسالة للأهل</h4>
-                    <p id="parentMessage" class="text-2xl font-medium italic leading-relaxed relative z-10"></p>
-                </div>
-            </div>
-        </section>
-
-        <section id="registration" class="page max-w-5xl mx-auto px-6 py-12 hidden animate-fade-in">
-            <div class="bg-white p-16 rounded-[60px] shadow-3xl text-center border-t-8 border-amber-500">
-                <h2 class="text-4xl font-black text-blue-900 font-amiri italic mb-10">بوابة الانتساب الرسمية</h2>
-                <div class="grid md:grid-cols-2 gap-8 mb-10 text-right">
+            <div id="studentDisplayArea" class="hidden space-y-6">
+                <div class="bg-white rounded-3xl p-8 shadow-md flex justify-between items-center border-r-8 border-blue-900">
                     <div>
-                        <label class="block mb-3 mr-4 text-xs font-black text-gray-400 uppercase tracking-widest">اسم الطالب رباعياً</label>
-                        <input type="text" id="regName" class="w-full p-5 bg-slate-50 border-2 border-gray-100 rounded-2xl font-bold focus:border-amber-500 outline-none transition-all" placeholder="أدخل الاسم">
+                        <h2 id="displayName" class="text-3xl font-black text-blue-900">...</h2>
+                        <p id="displayRing" class="text-amber-600 font-bold italic"></p>
                     </div>
-                    <div>
-                        <label class="block mb-3 mr-4 text-xs font-black text-gray-400 uppercase tracking-widest">رقم واتساب ولي الأمر</label>
-                        <input type="text" id="regPhone" class="w-full p-5 bg-slate-50 border-2 border-gray-100 rounded-2xl font-bold focus:border-amber-500 outline-none transition-all" placeholder="059xxxxxxx">
+                    <button onclick="logout()" class="text-red-500 font-bold">خروج</button>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-8 rounded-3xl shadow-md">
+                        <h4 class="text-xs font-black text-gray-400 uppercase mb-2">تسميع اليوم</h4>
+                        <p id="displayToday" class="text-lg font-bold text-blue-900">---</p>
                     </div>
-                    <div>
-                        <label class="block mb-3 mr-4 text-xs font-black text-gray-400 uppercase tracking-widest">اختر المسجد</label>
-                        <select id="regMosque" class="w-full p-5 bg-slate-50 border-2 border-gray-100 rounded-2xl font-bold focus:border-amber-500 outline-none transition-all">
-                            <option value="">-- اختر المسجد --</option>
-                            <option value="مسجد التابعين">مسجد التابعين (المقر)</option>
-                            <option value="مسجد معاذ بن جبل">مسجد معاذ بن جبل</option>
-                            <option value="مسجد التابعين للنساء">مسجد التابعين للنساء</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block mb-3 mr-4 text-xs font-black text-gray-400 uppercase tracking-widest">المحفظ المفضل</label>
-                        <select id="regTeacher" class="w-full p-5 bg-slate-50 border-2 border-gray-100 rounded-2xl font-bold focus:border-amber-500 outline-none transition-all">
-                            <option value="">-- اختر المحفظ --</option>
-                            <option value="ناهض العصار">أ. ناهض العصار</option>
-                            <option value="محمود العمصي">أ. محمود العمصي</option>
-                            <option value="محمد العصار">أ. محمد العصار</option>
-                        </select>
+                    <div class="bg-white p-8 rounded-3xl shadow-md">
+                        <h4 class="text-xs font-black text-gray-400 uppercase mb-2">التقييم</h4>
+                        <p id="displayGrade" class="text-2xl font-black text-amber-500">---</p>
                     </div>
                 </div>
-                <button onclick="submitNewRegistration()" id="regBtn" class="bg-blue-900 text-white px-20 py-6 rounded-2xl font-black text-xl shadow-2xl hover:bg-blue-800 hover:scale-105 transition-all">إرسال طلب الالتحاق</button>
             </div>
         </section>
 
-        <section id="loginGate" class="page max-w-lg mx-auto px-6 py-20 hidden animate-fade-in">
-            <div class="bg-white p-12 rounded-[50px] shadow-3xl text-center">
-                <i class="fas fa-lock text-4xl text-amber-500 mb-6"></i>
-                <h2 class="text-3xl font-black text-blue-900 mb-8 font-amiri italic">منطقة الصلاحيات</h2>
-                <input type="password" id="sysPassword" class="w-full p-5 bg-slate-50 border-2 border-gray-100 rounded-2xl text-center text-3xl font-black mb-6 focus:border-amber-500 outline-none transition-all" placeholder="••••">
-                <button onclick="checkAccess()" class="w-full bg-blue-900 text-white py-5 rounded-2xl font-black text-lg shadow-xl">دخول النظام</button>
+        <section id="registration" class="page max-w-4xl mx-auto px-6 py-12">
+            <div class="bg-white p-10 rounded-3xl shadow-xl">
+                <h2 class="text-3xl font-black text-blue-900 mb-8 text-center">طلب انتساب جديد</h2>
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <input type="text" id="regName" class="w-full p-4 border-2 border-slate-100 rounded-xl font-bold" placeholder="اسم الطالب رباعياً">
+                    <input type="text" id="regPhone" class="w-full p-4 border-2 border-slate-100 rounded-xl font-bold" placeholder="رقم واتساب ولي الأمر">
+                </div>
+                <button onclick="submitNewRegistration()" class="w-full btn-gold py-5 text-xl">إرسال الطلب</button>
             </div>
         </section>
 
-        <section id="teacherDashboard" class="page max-w-5xl mx-auto px-6 py-12 hidden animate-fade-in">
-            <div class="bg-white p-12 rounded-[50px] shadow-2xl border-t-8 border-blue-900">
-                <div class="flex justify-between items-center mb-10 border-b pb-6">
-                    <h2 class="text-2xl font-black text-blue-900 italic">تحديث سجلات الطلاب <i class="fas fa-edit ml-2"></i></h2>
-                    <button onclick="logout()" class="text-red-500 font-black text-xs uppercase">خروج</button>
+        <section id="teacherDashboard" class="page max-w-4xl mx-auto px-6 py-12">
+            <div class="bg-white p-10 rounded-3xl shadow-2xl border-t-8 border-blue-900">
+                <h2 class="text-2xl font-black text-blue-900 mb-6 border-b pb-4">لوحة تحكم المحفظ</h2>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <input type="text" id="tTargetID" class="p-4 border-2 border-slate-100 rounded-xl" placeholder="ID الطالب">
+                    <input type="number" id="tParts" class="p-4 border-2 border-slate-100 rounded-xl" placeholder="عدد الأجزاء">
                 </div>
-                <div class="grid md:grid-cols-2 gap-8 mb-8">
-                    <input type="text" id="tTargetID" class="w-full p-5 bg-slate-50 border-2 border-gray-100 rounded-2xl font-bold" placeholder="ID الطالب">
-                    <input type="number" id="tParts" class="w-full p-5 bg-slate-50 border-2 border-gray-100 rounded-2xl font-bold" placeholder="عدد الأجزاء">
-                    <select id="tGrade" class="w-full p-5 bg-slate-50 border-2 border-gray-100 rounded-2xl font-bold">
-                        <option>ممتاز مرتفع 🌟</option>
-                        <option>ممتاز ✅</option>
-                        <option>جيد جداً 👍</option>
-                        <option>يحتاج مراجعة ⚠️</option>
-                    </select>
-                    <input type="text" id="tTodayRecord" class="w-full p-5 bg-slate-50 border-2 border-gray-100 rounded-2xl font-bold" placeholder="تسميع اليوم">
-                </div>
-                <textarea id="tMsg" class="w-full p-5 bg-slate-50 border-2 border-gray-100 rounded-2xl font-bold h-32 mb-8" placeholder="رسالة للأهل..."></button>
-                <button onclick="submitTeacherUpdate()" id="tUpdateBtn" class="w-full bg-amber-500 text-white py-6 rounded-2xl font-black text-xl shadow-xl">حفظ في السجل السحابي</button>
+                <button onclick="submitTeacherUpdate()" id="tUpdateBtn" class="w-full btn-gold py-5 text-xl">تحديث السجل</button>
             </div>
         </section>
 
+        <section id="loginGate" class="page max-w-md mx-auto px-6 py-20">
+            <div class="bg-white p-10 rounded-3xl shadow-xl text-center">
+                <h2 class="text-2xl font-black text-blue-900 mb-6 italic">دخول النظام</h2>
+                <input type="password" id="sysPassword" class="w-full p-4 border-2 border-slate-100 rounded-xl text-center text-2xl mb-6" placeholder="••••">
+                <button onclick="checkAccess()" class="w-full btn-gold py-4">دخول</button>
+            </div>
+        </section>
     </main>
-
-    <footer class="py-10 text-center text-gray-400 font-black text-[10px] uppercase tracking-widest italic bg-white border-t mt-20">
-        حقوق الطبع محفوظة © 2026 صرح التابعين - النصيرات - إدارة م. أحمد
-    </footer>
 
     <script src="js/app.js"></script>
 </body>
