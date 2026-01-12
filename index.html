@@ -3,166 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة التابعين القرآني | الإدارة الذكية</title>
+    <title>منصة التابعين الذكية | إدارة وحفظ</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --primary: #1e293b; --accent: #d4af37; }
-        body { font-family: 'Tajawal', sans-serif; background-color: #f1f5f9; color: #1e293b; }
-        .official-bg { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
+        :root { --primary: #0f172a; --gold: #d4af37; --success: #10b981; }
+        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; overflow-x: hidden; }
         .page { display: none; }
-        .page.active { display: block; animation: fadeIn 0.5s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .page.active { display: block; animation: slideUp 0.4s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* تصميم كروت الطلاب */
-        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .progress-bar-container { height: 12px; background: #e2e8f0; border-radius: 10px; overflow: hidden; position: relative; }
-        .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #d4af37, #f1c40f); width: 0%; transition: width 1.5s cubic-bezier(0.1, 0.7, 1.0, 0.1); }
+        /* تصميم مخصص للجوال */
+        .mobile-card { border-radius: 24px; border: 1px solid rgba(226, 232, 240, 0.8); background: white; box-shadow: 0 4px 20px -5px rgba(0,0,0,0.05); }
+        .gold-gradient { background: linear-gradient(135deg, #d4af37 0%, #f1c40f 100%); }
+        .dark-gradient { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
         
-        /* نقاط رحلة الحفظ */
-        .journey-dot { width: 40px; height: 40px; border-radius: 12px; display: flex; items-center: center; justify-content: center; font-size: 12px; font-weight: 900; transition: 0.3s; border: 2px solid #e2e8f0; }
-        .journey-dot.completed { background: #d4af37; border-color: #b8962e; color: white; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); transform: scale(1.1); }
+        /* لوحة الشرف المتحركة */
+        .honor-roll-item { animation: glow 2s infinite alternate; }
+        @keyframes glow { from { border-color: #d4af37; } to { border-color: #f1c40f; box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); } }
     </style>
 </head>
-<body>
+<body class="text-slate-900">
 
-    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-4 cursor-pointer" onclick="goToPage('home')">
-                <div class="w-12 h-12 official-bg rounded-2xl flex items-center justify-center text-white text-xl shadow-lg">
-                    <i class="fas fa-quran"></i>
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-2" onclick="goToPage('home')">
+                <div class="w-10 h-10 dark-gradient rounded-xl flex items-center justify-center text-white shadow-lg">
+                    <i class="fas fa-quran text-lg"></i>
                 </div>
-                <div>
-                    <h1 class="text-xl font-black text-slate-800">مركز التابعين</h1>
-                    <p class="text-[9px] text-amber-600 font-bold uppercase tracking-widest">Imperial Quranic Center</p>
-                </div>
+                <span class="font-black text-slate-800 text-lg">التابعين</span>
             </div>
-            <div class="hidden md:flex gap-8 font-bold text-sm">
-                <button onclick="goToPage('home')" class="hover:text-amber-600 transition">الرئيسية</button>
-                <button onclick="goToPage('studentPortal')" class="hover:text-amber-600 transition">بوابة الطالب</button>
-                <button onclick="goToPage('registration')" class="hover:text-amber-600 transition">سجل الآن</button>
+            <div class="flex gap-2">
+                <button onclick="goToPage('honorRoll')" class="p-2 text-amber-600"><i class="fas fa-trophy text-xl"></i></button>
+                <button onclick="goToPage('loginGate')" class="p-2 text-slate-400"><i class="fas fa-user-cog text-xl"></i></button>
             </div>
-            <button onclick="goToPage('loginGate')" class="bg-slate-100 px-6 py-2.5 rounded-full text-xs font-black hover:bg-slate-200 transition">دخول المسؤولين</button>
         </div>
     </nav>
 
-    <main class="min-h-screen pt-10 pb-20">
+    <main class="p-4 pb-24 max-w-2xl mx-auto">
         
-        <section id="home" class="page active max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-center py-10">
-                <div class="space-y-8">
-                    <h2 class="text-7xl font-black text-slate-900 leading-tight">جيلٌ قرآني <br> <span class="text-amber-600 font-amiri italic font-normal">يصنع المستقبل</span></h2>
-                    <p class="text-xl text-slate-500 leading-relaxed border-r-4 border-amber-500 pr-6">بإشراف الأستاذ إسماعيل نوفل، ندمج بين أصالة التعليم القرآني وأدوات الإدارة الحديثة لبناء شخصية الطالب.</p>
-                    <div class="flex gap-4">
-                        <button onclick="goToPage('studentPortal')" class="bg-slate-900 text-white px-10 py-5 rounded-2xl font-black shadow-2xl hover:bg-slate-800 transition">فتح ملف الطالب</button>
-                    </div>
+        <section id="home" class="page active space-y-6">
+            <div class="dark-gradient p-8 rounded-[32px] text-white relative overflow-hidden shadow-2xl">
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-black mb-2">مرحباً بك في <br>صرح التابعين</h2>
+                    <p class="text-slate-300 text-sm">منصة الطالب والمحفظ الذكية</p>
+                    <button onclick="goToPage('studentPortal')" class="mt-6 bg-white text-slate-900 px-6 py-3 rounded-2xl font-black text-sm shadow-xl">ملفي الشخصي <i class="fas fa-arrow-left mr-2"></i></button>
                 </div>
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1590076175574-e8893110534b?q=80&w=1000" class="rounded-[50px] shadow-3xl">
+                <i class="fas fa-mosque absolute -bottom-4 -left-4 text-white/5 text-9xl"></i>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div onclick="goToPage('smartTeacher')" class="mobile-card p-6 text-center cursor-pointer">
+                    <i class="fas fa-headphones text-3xl text-blue-500 mb-3"></i>
+                    <h4 class="font-bold text-sm">المعلم الذكي</h4>
+                </div>
+                <div onclick="goToPage('honorRoll')" class="mobile-card p-6 text-center cursor-pointer">
+                    <i class="fas fa-medal text-3xl text-amber-500 mb-3"></i>
+                    <h4 class="font-bold text-sm">لوحة الشرف</h4>
                 </div>
             </div>
         </section>
 
-        <section id="studentPortal" class="page max-w-5xl mx-auto px-6">
-            <div id="studentLoginSection" class="max-w-md mx-auto text-center py-20">
-                <h3 class="text-3xl font-black mb-8 font-amiri">ملف التقدم التعليمي</h3>
-                <input type="text" id="studentID" class="w-full p-6 bg-white rounded-3xl text-center text-4xl font-black mb-6 shadow-sm focus:ring-4 ring-amber-500 outline-none transition-all" placeholder="ID الطالب">
-                <button onclick="fetchStudentData()" id="stdQueryBtn" class="w-full bg-slate-900 text-white py-6 rounded-3xl font-black text-xl hover:shadow-2xl transition">دخول الملف</button>
+        <section id="studentPortal" class="page space-y-6">
+            <div id="studentLoginSection" class="mobile-card p-8 text-center mt-10">
+                <h3 class="text-2xl font-black mb-6">تسجيل دخول الطالب</h3>
+                <input type="text" id="studentID" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-center text-3xl font-black mb-4 outline-none focus:ring-2 ring-amber-500" placeholder="ID">
+                <button onclick="fetchStudentData()" id="stdQueryBtn" class="w-full dark-gradient text-white py-4 rounded-2xl font-black">دخول</button>
             </div>
 
-            <div id="studentDisplayArea" class="hidden space-y-8">
-                <div class="glass-card p-10 flex flex-col md:flex-row justify-between items-center gap-6 border-t-8 border-amber-500">
-                    <div class="flex items-center gap-8">
-                        <div id="avatarLetter" class="w-24 h-24 official-bg rounded-3xl flex items-center justify-center text-white text-5xl font-black shadow-xl">...</div>
-                        <div>
-                            <h2 id="displayName" class="text-4xl font-black text-slate-900">...</h2>
-                            <p id="displayRing" class="text-amber-600 font-bold mt-2"></p>
-                        </div>
-                    </div>
-                    <button onclick="logout()" class="text-red-500 font-black text-sm uppercase tracking-widest">خروج</button>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="glass-card p-8 text-center">
-                        <h4 class="text-xs font-black text-slate-400 mb-4 uppercase">نسبة الختمة</h4>
-                        <div class="progress-bar-container mb-2">
-                            <div id="progressBar" class="progress-bar-fill"></div>
-                        </div>
-                        <p id="progressPercent" class="text-amber-600 font-black">0%</p>
-                    </div>
-                    <div class="glass-card p-8 text-center">
-                        <h4 class="text-xs font-black text-slate-400 mb-2 uppercase">تقييم اليوم</h4>
-                        <p id="displayGrade" class="text-2xl font-black text-blue-900">---</p>
-                    </div>
-                    <div class="glass-card p-8 text-center">
-                        <h4 class="text-xs font-black text-slate-400 mb-2 uppercase">تسميع اليوم</h4>
-                        <p id="displayToday" class="text-lg font-bold text-slate-700">---</p>
+            <div id="studentDisplayArea" class="hidden space-y-6">
+                <div class="mobile-card p-6 border-r-8 border-amber-500 flex items-center gap-4">
+                    <div id="avatarLetter" class="w-16 h-16 gold-gradient rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-lg">?</div>
+                    <div>
+                        <h2 id="displayName" class="text-xl font-black">...</h2>
+                        <p id="displayRing" class="text-xs text-slate-400"></p>
                     </div>
                 </div>
 
-                <div class="glass-card p-10">
-                    <h3 class="text-xl font-black mb-10 flex items-center gap-3"><i class="fas fa-map-marked-alt text-amber-500"></i> رحلة حفظ كتاب الله (30 جزء)</h3>
-                    <div id="journeyDots" class="flex flex-wrap justify-center gap-4"></div>
-                    <p id="journeyText" class="mt-10 text-center font-black text-slate-900 bg-amber-50 py-4 rounded-2xl"></p>
+                <div class="mobile-card p-6">
+                    <div class="flex justify-between items-end mb-4">
+                        <h4 class="font-black text-sm">تقدمك في الحفظ</h4>
+                        <span id="progressPercent" class="text-amber-600 font-black">0%</span>
+                    </div>
+                    <div class="h-3 bg-slate-100 rounded-full overflow-hidden">
+                        <div id="progressBar" class="h-full gold-gradient w-0 transition-all duration-1000"></div>
+                    </div>
+                    <div id="journeyDots" class="grid grid-cols-6 gap-2 mt-6"></div>
                 </div>
 
-                <div class="official-bg text-white p-12 rounded-[40px] relative overflow-hidden shadow-2xl">
-                    <div class="relative z-10">
-                        <h4 class="text-xs font-bold text-amber-500 mb-4 tracking-[4px]">رسالة خاصة من المحفظ</h4>
-                        <p id="parentMessage" class="text-2xl font-medium italic leading-relaxed"></p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="mobile-card p-6 text-center">
+                        <span class="text-[10px] font-black text-slate-400 block mb-2 uppercase">تقييم اليوم</span>
+                        <div id="displayGrade" class="text-lg font-black text-blue-600">---</div>
                     </div>
-                    <i class="fas fa-award absolute -bottom-5 -left-5 text-white/5 text-[150px]"></i>
+                    <div class="mobile-card p-6 text-center">
+                        <span class="text-[10px] font-black text-slate-400 block mb-2 uppercase">سورة اليوم</span>
+                        <div id="displayToday" class="text-sm font-bold">---</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="loginGate" class="page max-w-md mx-auto px-6 py-20">
-            <div class="glass-card p-12 text-center">
-                <h2 class="text-2xl font-black mb-8 italic">منطقة المسؤولين</h2>
-                <input type="password" id="sysPassword" class="w-full p-5 bg-slate-50 border border-slate-200 rounded-2xl text-center text-3xl mb-6 outline-none" placeholder="••••">
-                <button onclick="checkAccess()" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-black">دخول</button>
+        <section id="honorRoll" class="page space-y-6">
+            <div class="text-center py-6">
+                <h2 class="text-3xl font-black text-slate-800 font-amiri italic">لوحة الشرف الأسبوعية</h2>
+                <p class="text-slate-400 text-sm italic">"وفي ذلك فليتنافس المتنافسون"</p>
+            </div>
+            <div id="honorList" class="space-y-4">
+                <div class="text-center p-10 text-slate-300">جاري تحميل قائمة الأبطال...</div>
             </div>
         </section>
 
-        <section id="teacherDashboard" class="page max-w-4xl mx-auto px-6">
-            <div class="glass-card p-10 border-t-8 border-slate-900">
-                <h2 class="text-2xl font-black mb-10 pb-4 border-b">تحديث بيانات الطالب</h2>
-                <div class="grid md:grid-cols-2 gap-6 mb-6 text-right">
-                    <div>
-                        <label class="block mb-2 text-xs font-black text-slate-400 uppercase">ID الطالب</label>
-                        <input type="text" id="tTargetID" class="w-full p-4 bg-slate-50 rounded-xl outline-none focus:ring-2 ring-amber-500" placeholder="أدخل الـ ID">
-                    </div>
-                    <div>
-                        <label class="block mb-2 text-xs font-black text-slate-400 uppercase">الأجزاء المحفوظة</label>
-                        <input type="number" id="tParts" class="w-full p-4 bg-slate-50 rounded-xl outline-none focus:ring-2 ring-amber-500" placeholder="مثلاً: 5">
-                    </div>
-                    <div>
-                        <label class="block mb-2 text-xs font-black text-slate-400 uppercase">تقييم اليوم</label>
-                        <select id="tGrade" class="w-full p-4 bg-slate-50 rounded-xl outline-none">
-                            <option>ممتاز مرتفع 🌟</option>
-                            <option>ممتاز ✅</option>
-                            <option>جيد جداً 👍</option>
-                            <option>يحتاج مراجعة ⚠️</option>
+        <section id="smartTeacher" class="page space-y-6">
+            <div class="mobile-card p-8">
+                <h3 class="text-xl font-black mb-6"><i class="fas fa-headphones-alt ml-2 text-blue-500"></i> استمع وراجع</h3>
+                <div class="space-y-4">
+                    <select id="surahSelect" class="w-full p-4 bg-slate-50 border rounded-2xl font-bold outline-none">
+                        <option value="001">الفاتحة</option>
+                        <option value="002">البقرة</option>
+                        <option value="036">يس</option>
+                        <option value="067">الملك</option>
+                        <option value="078">النبأ</option>
                         </select>
+                    <div id="audioPlayer" class="hidden mt-6">
+                        <audio id="quranAudio" controls class="w-full h-10"></audio>
                     </div>
-                    <div>
-                        <label class="block mb-2 text-xs font-black text-slate-400 uppercase">تسميع اليوم</label>
-                        <input type="text" id="tTodayRecord" class="w-full p-4 bg-slate-50 rounded-xl outline-none" placeholder="مثلاً: سورة البقرة">
+                    <button onclick="playSurah()" class="w-full dark-gradient text-white py-4 rounded-2xl font-black mt-4">تشغيل بصوت المنشاوي</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="adminStats" class="page space-y-6">
+            <div class="dark-gradient p-8 rounded-[32px] text-white">
+                <h3 class="text-xl font-black mb-6">إحصائيات المركز | الإدارة</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white/10 p-4 rounded-2xl border border-white/10">
+                        <span class="text-[10px] text-slate-400 uppercase">إجمالي الطلاب</span>
+                        <div id="totalStudents" class="text-3xl font-black mt-1">0</div>
+                    </div>
+                    <div id="topTeacherCard" class="bg-white/10 p-4 rounded-2xl border border-white/10">
+                        <span class="text-[10px] text-slate-400 uppercase">المحفظ الأكثر نشاطاً</span>
+                        <div id="topTeacher" class="text-sm font-black mt-2">---</div>
                     </div>
                 </div>
-                <textarea id="tMsg" class="w-full p-4 bg-slate-50 rounded-xl h-32 mb-6 outline-none" placeholder="رسالة تشجيعية للطالب..."></textarea>
-                <button onclick="submitTeacherUpdate()" id="tUpdateBtn" class="w-full bg-amber-500 text-white py-5 rounded-2xl font-black text-xl shadow-lg">حفظ التغييرات</button>
+            </div>
+        </section>
+
+        <section id="loginGate" class="page max-w-sm mx-auto py-20">
+            <div class="mobile-card p-8 text-center">
+                <h2 class="text-xl font-black mb-6 italic">دخول المسؤولين</h2>
+                <input type="password" id="sysPassword" class="w-full p-4 bg-slate-50 border rounded-2xl text-center text-3xl mb-6" placeholder="••••">
+                <button onclick="checkAccess()" class="w-full dark-gradient text-white py-4 rounded-2xl font-black">دخول</button>
             </div>
         </section>
 
     </main>
 
-    <footer class="py-10 text-center text-slate-400 text-[10px] font-black tracking-widest uppercase italic">
-        مركز التابعين القرآني © 2026 - نظام الإدارة السحابي v2.0
-    </footer>
+    <div class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-slate-100 flex justify-around items-center h-20 px-4 z-50">
+        <button onclick="goToPage('home')" class="flex flex-col items-center text-slate-400 hover:text-blue-900 transition">
+            <i class="fas fa-home text-xl"></i>
+            <span class="text-[10px] font-black mt-1">الرئيسية</span>
+        </button>
+        <button onclick="goToPage('studentPortal')" class="flex flex-col items-center text-slate-400 hover:text-blue-900 transition">
+            <i class="fas fa-user text-xl"></i>
+            <span class="text-[10px] font-black mt-1">ملفي</span>
+        </button>
+        <button onclick="goToPage('honorRoll')" class="flex flex-col items-center text-slate-400 hover:text-amber-600 transition">
+            <i class="fas fa-crown text-xl"></i>
+            <span class="text-[10px] font-black mt-1">المتفوقين</span>
+        </button>
+    </div>
 
     <script src="js/app.js"></script>
 </body>
