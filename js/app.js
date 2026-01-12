@@ -1,21 +1,32 @@
+// الرابط الخاص بك
 const scriptURL = 'https://script.google.com/macros/s/AKfycby2lN66AeomSW1h3Gmsoyj_1vn66cYqhTsxehaWBaH7xVgllH2Rtx0H6L_gJI4AfmPedA/exec';
 
+// 1. نظام التنقل
 function goToPage(id) {
-    // إخفاء كل الصفحات
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    // إظهار الصفحة المطلوبة بـ Animation
     setTimeout(() => {
         const target = document.getElementById(id);
         if(target) target.classList.add('active');
     }, 50);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// 2. فحص صلاحيات المحفظ
+function checkAccess() {
+    if(document.getElementById('sysPassword').value === "2026") {
+        goToPage('teacherDashboard');
+    } else {
+        alert("كلمة المرور خاطئة");
+    }
+}
+
+// 3. جلب بيانات الطالب (تفاعلي)
 async function fetchStudentData() {
     const id = document.getElementById('studentID').value;
     const btn = document.getElementById('stdQueryBtn');
     if(!id) return alert("أدخل كود الطالب");
 
-    btn.innerText = "جاري الاتصال بالسحابة...";
+    btn.innerText = "جاري فتح الملف...";
     btn.disabled = true;
 
     try {
@@ -26,40 +37,81 @@ async function fetchStudentData() {
             document.getElementById('studentLoginSection').classList.add('hidden');
             document.getElementById('studentDisplayArea').classList.remove('hidden');
             
+            // تعبئة البيانات الأساسية
             document.getElementById('displayName').innerText = data["اسم الطالب"];
-            document.getElementById('displayRing').innerText = `حلقة: ${data["اسم المحفظ"]}`;
+            document.getElementById('displayRing').innerText = `حلقة المحفظ: ${data["اسم المحفظ"]}`;
+            document.getElementById('displayGrade').innerText = data["درجة اليوم"] || "لم ترصد";
+            document.getElementById('displayToday').innerText = data["تسميع اليوم"] || "---";
+            document.getElementById('parentMessage').innerText = data["رسالة للأهل."] || "واصل اجتهادك يا بطل!";
             document.getElementById('avatarLetter').innerText = data["اسم الطالب"].charAt(0);
             
-            updateJourneyMap(data["عدد الأجزاء المحفوظة"]);
+            // حساب التقدم وشريط الإنجاز
+            const partsCount = parseInt(data["عدد الأجزاء المحفوظة"]) || 0;
+            const percent = Math.round((partsCount / 30) * 100);
+            
+            document.getElementById('progressBar').style.width = percent + '%';
+            document.getElementById('progressPercent').innerText = percent + '%';
+            
+            // رسم خريطة الـ 30 جزء التفاعلية
+            updateJourneyMap(partsCount);
+            
         } else {
-            alert("⚠️ الكود غير موجود");
+            alert("⚠️ هذا الرقم غير مسجل في قاعدة البيانات");
         }
     } catch (e) {
-        alert("خطأ في الاتصال");
+        alert("خطأ في الاتصال بالخادم");
     } finally {
-        btn.innerText = "عرض النتائج";
+        btn.innerText = "دخول الملف";
         btn.disabled = false;
     }
 }
 
+// 4. رسم خريطة الختمة (النقاط التفاعلية)
 function updateJourneyMap(parts) {
     const container = document.getElementById('journeyDots');
     container.innerHTML = '';
-    const num = parseInt(parts) || 0;
+    
     for (let i = 1; i <= 30; i++) {
         const dot = document.createElement('div');
-        dot.className = `w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-black ${i <= num ? 'bg-amber-500 text-black shadow-lg scale-110' : 'bg-white/10 text-white/30'}`;
+        dot.className = `journey-dot ${i <= parts ? 'completed' : ''}`;
         dot.innerText = i;
+        
+        // تأثير توهج على آخر جزء وصل إليه الطالب
+        if (i === parts) dot.classList.add('dot-glow');
+        
         container.appendChild(dot);
     }
-    document.getElementById('journeyText').innerText = `أنجزت ${num} أجزاء حتى الآن`;
+    
+    document.getElementById('journeyText').innerText = `بفضل الله، أنجزت ${parts} أجزاء من كتاب الله.`;
 }
 
-function checkAccess() {
-    if(document.getElementById('sysPassword').value === "2026") {
-        goToPage('teacherDashboard');
-    } else {
-        alert("كلمة المرور خاطئة");
+// 5. تحديث البيانات من لوحة المحفظ
+async function submitTeacherUpdate() {
+    const btn = document.getElementById('tUpdateBtn');
+    const data = {
+        action: 'updateScore',
+        id: document.getElementById('tTargetID').value,
+        parts: document.getElementById('tParts').value,
+        grade: document.getElementById('tGrade').value,
+        today: document.getElementById('tTodayRecord').value,
+        msg: document.getElementById('tMsg').value
+    };
+
+    if(!data.id || !data.parts) return alert("أدخل الـ ID وعدد الأجزاء");
+
+    btn.innerText = "جاري الحفظ...";
+    btn.disabled = true;
+
+    try {
+        await fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify(data)
+        });
+        alert("✅ تم تحديث سجل الطالب بنجاح");
+        location.reload();
+    } catch (e) {
+        alert("فشل في تحديث البيانات");
     }
 }
 
