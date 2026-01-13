@@ -2,161 +2,150 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>مركز التابعين القرآني | غزة</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة مركز التابعين القرآني</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --gold: #d4af37; --dark: #0f172a; }
-        body { font-family: 'Tajawal', sans-serif; background: #fdfdfd; -webkit-tap-highlight-color: transparent; }
-        .page { display: none; } .page.active { display: block; animation: slideIn 0.3s ease-out; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        .official-card { background: white; border-radius: 24px; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; }
-        .btn-gold { background: linear-gradient(135deg, #d4af37 0%, #b8962e 100%); transition: 0.3s; }
-        .btn-gold:active { transform: scale(0.95); }
-        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; height: 75px; border-top: 1px solid #eee; display: flex; justify-content: space-around; align-items: center; z-index: 1000; }
-        .nav-item { color: #94a3b8; font-size: 10px; font-weight: 900; text-align: center; }
-        .nav-item.active { color: var(--gold); }
+        body { font-family: 'Tajawal', sans-serif; background: #f8fafc; color: var(--dark); }
+        .page { display: none; } .page.active { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .official-card { background: white; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; padding: 20px; }
+        .btn-gold { background: linear-gradient(135deg, #d4af37 0%, #b8962e 100%); color: white; border-radius: 12px; font-weight: bold; }
+        .tab-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; height: 70px; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #eee; z-index: 1000; }
+        .nav-link { font-size: 10px; font-weight: 900; color: #94a3b8; text-align: center; cursor: pointer; }
+        .nav-link.active { color: var(--gold); }
     </style>
 </head>
 <body class="pb-24">
 
-    <header class="h-20 bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b flex justify-between items-center px-6">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center text-white shadow-lg">
-                <i class="fas fa-quran"></i>
-            </div>
-            <div>
-                <h1 class="text-lg font-black leading-none">مركز التابعين</h1>
-                <p class="text-[9px] text-amber-600 font-bold uppercase tracking-tighter">بإشراف أ. إسماعيل نوفل</p>
-            </div>
+    <header class="h-16 bg-white sticky top-0 z-50 border-b flex justify-between items-center px-4">
+        <div class="flex items-center gap-2">
+            <i class="fas fa-quran text-amber-600 text-xl"></i>
+            <h1 class="font-black text-lg">مركز التابعين</h1>
         </div>
-        <button onclick="goToPage('adminGate')" class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center text-slate-400">
-            <i class="fas fa-cog"></i>
-        </button>
+        <button onclick="goToPage('admin')" class="text-slate-400"><i class="fas fa-user-shield text-xl"></i></button>
     </header>
 
-    <main class="max-w-2xl mx-auto p-4">
-        
-        <section id="home" class="page active space-y-6">
-            <div class="bg-slate-900 p-8 rounded-[35px] text-white shadow-2xl relative overflow-hidden">
-                <h2 class="text-3xl font-black mb-4 font-amiri italic">مرحباً بك في صرحنا</h2>
-                <p class="text-xs text-slate-400 mb-8 leading-relaxed">منصة التابعين الرقمية هي رفيقك في رحلة ختم كتاب الله.</p>
-                <div class="grid grid-cols-2 gap-4">
-                    <button onclick="goToPage('student')" class="btn-gold py-4 rounded-2xl text-sm font-black shadow-xl">ملف الطالب</button>
-                    <button onclick="goToPage('info')" class="bg-white/10 py-4 rounded-2xl text-sm font-black">عن المركز</button>
+    <main class="max-w-md mx-auto p-4 space-y-6">
+
+        <section id="home" class="page active space-y-4">
+            <div class="bg-slate-900 text-white p-8 rounded-[30px] shadow-xl relative overflow-hidden">
+                <h2 class="text-2xl font-black mb-2">من نحن؟</h2>
+                <p class="text-xs text-slate-300 leading-relaxed">نحن "مركز التابعين القرآني" في غزة، صرح تعليمي يهدف لربط الجيل بكتاب الله حفظاً وفهماً، نضم نخبة من المحفظين المتميزين ونعمل بنظام إلكتروني حديث لمتابعة الطلاب.</p>
+                <div class="mt-4 flex gap-2">
+                    <span class="bg-amber-500/20 text-amber-500 text-[10px] px-3 py-1 rounded-full font-bold">تأسس عام 2024</span>
+                    <span class="bg-blue-500/20 text-blue-500 text-[10px] px-3 py-1 rounded-full font-bold">بإشراف أ. إسماعيل نوفل</span>
                 </div>
-                <i class="fas fa-mosque absolute -bottom-8 -left-8 text-white/5 text-[150px]"></i>
             </div>
 
-            <div class="grid grid-cols-2 gap-4">
-                <div onclick="goToPage('honor')" class="official-card p-6 text-center">
-                    <i class="fas fa-crown text-3xl text-amber-500 mb-2"></i>
-                    <h4 class="font-black text-xs">لوحة الشرف</h4>
+            <div class="official-card">
+                <h3 class="font-black mb-3"><i class="fas fa-bullseye ml-2 text-amber-500"></i> رسالتنا</h3>
+                <p class="text-xs text-slate-500 italic">تخريج جيل قرآني فريد، يحفظ الحروف ويقيم الحدود، ويكون قدوة في مجتمعه.</p>
+            </div>
+        </section>
+
+        <section id="mosques" class="page space-y-4">
+            <h2 class="text-xl font-black mb-4 border-r-4 border-amber-500 pr-3">مساجدنا وحلقاتنا</h2>
+            
+            <div class="official-card">
+                <button onclick="toggleDetails('details1')" class="w-full flex justify-between items-center">
+                    <span class="font-black text-slate-700">مسجد التابعين (المقر الرئيسي)</span>
+                    <i class="fas fa-chevron-down text-slate-300"></i>
+                </button>
+                <div id="details1" class="hidden mt-4 space-y-3 pt-3 border-t">
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <div class="flex justify-between">
+                            <span class="font-bold text-sm text-blue-600">حلقة ناهض العصار</span>
+                            <span class="text-[10px] bg-green-100 text-green-600 px-2 py-1 rounded">متاح التسجيل</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 mt-1">الموعد: بعد العصر | السعة: 15 طالب</p>
+                        <button onclick="goToPage('register')" class="w-full mt-2 py-2 bg-white border border-blue-500 text-blue-500 text-xs font-black rounded-lg">تسجيل طفلي</button>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <div class="flex justify-between">
+                            <span class="font-bold text-sm text-blue-600">حلقة محمد العصار</span>
+                            <span class="text-[10px] bg-red-100 text-red-600 px-2 py-1 rounded">ممتلئ</span>
+                        </div>
+                        <button disabled class="w-full mt-2 py-2 bg-slate-200 text-slate-400 text-xs font-black rounded-lg">التسجيل مغلق</button>
+                    </div>
+                    <p class="text-[10px] text-slate-400 text-center italic">محفظين آخرين: أحمد جحجوح، أحمد يونس، أحمد أبو سلمية، قصي يونس.</p>
                 </div>
-                <div onclick="goToPage('teacher')" class="official-card p-6 text-center">
-                    <i class="fas fa-headphones text-3xl text-blue-500 mb-2"></i>
-                    <h4 class="font-black text-xs">المعلم الذكي</h4>
+            </div>
+
+            <div class="official-card">
+                <button onclick="toggleDetails('details2')" class="w-full flex justify-between items-center">
+                    <span class="font-black text-slate-700">مسجد معاذ بن جبل</span>
+                    <i class="fas fa-chevron-down text-slate-300"></i>
+                </button>
+                <div id="details2" class="hidden mt-4 space-y-3 pt-3 border-t">
+                    <div class="bg-slate-50 p-3 rounded-xl">
+                        <p class="font-bold text-sm">المحفظين: محمود العمصي، عبد الله العمصي، محمد العمصي.</p>
+                        <button onclick="goToPage('register')" class="w-full mt-3 py-2 btn-gold text-xs rounded-lg">طلب انضمام للحلقة</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="student" class="page space-y-6">
-            <div id="stdLogin" class="official-card p-10 text-center">
-                <h3 class="text-xl font-black mb-6">أدخل كود الطالب (ID)</h3>
-                <input type="text" id="stdID" class="w-full text-center text-4xl font-black mb-6 bg-slate-50 rounded-2xl h-20 outline-none border-2 border-transparent focus:border-amber-500" placeholder="000">
-                <button onclick="fetchStudent()" id="loadBtn" class="w-full btn-gold py-5 rounded-2xl font-black text-lg">فتح السجل</button>
+        <section id="student" class="page space-y-4">
+            <div class="official-card text-center py-10">
+                <h3 class="text-lg font-black mb-6">متابعة الطالب</h3>
+                <input type="text" id="stdID" class="w-full text-center text-3xl font-black mb-4 h-16 bg-slate-50 rounded-xl" placeholder="كود الطالب">
+                <button onclick="getStudentInfo()" id="searchBtn" class="w-full btn-gold py-4">فتح الملف</button>
             </div>
-            <div id="stdData" class="hidden space-y-4">
-                <div class="official-card p-8 border-t-8 border-amber-500">
-                    <div class="flex justify-between items-center mb-6">
-                        <h2 id="nameDisplay" class="text-2xl font-black">...</h2>
-                        <div id="avatar" class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-white font-black text-xl">?</div>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex justify-between text-[10px] font-black uppercase text-slate-400">
-                            <span>التقدم الكلي</span>
-                            <span id="percentDisplay">0%</span>
-                        </div>
-                        <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden">
-                            <div id="progressBar" class="h-full btn-gold w-0 transition-all duration-1000"></div>
-                        </div>
-                    </div>
+            <div id="stdResult" class="hidden official-card border-t-4 border-amber-500">
                 </div>
-                <div class="official-card p-6 text-sm font-bold italic text-slate-600 border-r-4 border-blue-500" id="msgDisplay">...</div>
-            </div>
         </section>
 
-        <section id="admin" class="page space-y-6">
-            <div class="official-card p-8 border-t-8 border-blue-600">
-                <h3 class="text-xl font-black mb-6 text-center">رصد الدرجة اليومية</h3>
-                <div class="space-y-4">
-                    <input type="text" id="tID" class="w-full" placeholder="ID الطالب">
-                    <input type="number" id="tParts" class="w-full" placeholder="عدد الأجزاء المحفوظة">
-                    <select id="tGrade" class="w-full bg-slate-50 p-4 rounded-xl font-bold">
-                        <option>ممتاز مرتفع 🌟</option>
-                        <option>ممتاز ✅</option>
-                        <option>جيد جداً 👍</option>
-                        <option>يحتاج مراجعة ⚠️</option>
+        <section id="register" class="page space-y-4">
+            <div class="official-card">
+                <h3 class="text-lg font-black mb-4">نموذج تسجيل جديد</h3>
+                <form id="regForm" class="space-y-3">
+                    <input type="text" name="name" placeholder="اسم الطفل الرباعي" required class="w-full p-3 bg-slate-50 rounded-xl outline-none">
+                    <input type="number" name="age" placeholder="العمر" required class="w-full p-3 bg-slate-50 rounded-xl outline-none">
+                    <select name="mosque" class="w-full p-3 bg-slate-50 rounded-xl outline-none">
+                        <option>اختر المسجد</option>
+                        <option>التابعين</option>
+                        <option>معاذ بن جبل</option>
                     </select>
-                    <input type="text" id="tToday" class="w-full" placeholder="تسميع اليوم (مثلاً: يس 1-20)">
-                    <textarea id="tMsg" class="w-full bg-slate-50 p-4 rounded-xl" placeholder="رسالة للطالب وأهله..." rows="3"></textarea>
-                    <button onclick="saveUpdate()" id="saveBtn" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-lg shadow-xl">حفظ في السجل</button>
+                    <input type="tel" name="phone" placeholder="رقم جوال ولي الأمر" required class="w-full p-3 bg-slate-50 rounded-xl outline-none">
+                    <button type="submit" class="w-full btn-gold py-4 mt-2">إرسال الطلب</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="admin" class="page space-y-4">
+            <div id="adminLogin" class="official-card text-center">
+                <input type="password" id="adminPass" class="w-full text-center mb-4 p-3 bg-slate-50 rounded-xl" placeholder="كلمة سر الإدارة">
+                <button onclick="checkAdmin()" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold">دخول</button>
+            </div>
+            <div id="adminPanel" class="hidden space-y-4">
+                <div class="official-card border-t-4 border-blue-600">
+                    <h3 class="font-black mb-4">تحديث سريع للبيانات</h3>
+                    <div class="space-y-3">
+                        <input type="text" id="upID" placeholder="ID الطالب" class="w-full p-3 bg-slate-50 rounded-xl">
+                        <input type="number" id="upParts" placeholder="عدد الأجزاء" class="w-full p-3 bg-slate-50 rounded-xl">
+                        <select id="upGrade" class="w-full p-3 bg-slate-50 rounded-xl">
+                            <option>ممتاز مرتفع 🌟</option>
+                            <option>ممتاز ✅</option>
+                            <option>جيد جداً 👍</option>
+                        </select>
+                        <textarea id="upMsg" placeholder="رسالة للأهل..." class="w-full p-3 bg-slate-50 rounded-xl"></textarea>
+                        <button onclick="updateStudent()" id="upBtn" class="w-full bg-blue-600 text-white py-4 rounded-xl font-black">حفظ التغييرات</button>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <section id="info" class="page space-y-6">
-            <h3 class="text-2xl font-black mb-4">مواقعنا ومحفظينا</h3>
-            <div class="official-card p-6 border-r-4 border-amber-500">
-                <h4 class="font-black text-amber-600 mb-2">مسجد التابعين (المقر الرئيسي)</h4>
-                <p class="text-[11px] font-bold text-slate-500 leading-relaxed">ناهض العصار، محمد العصار، أحمد جحجوح، أحمد يونس، أحمد أبو سلمية، قصي يونس.</p>
-            </div>
-            <div class="official-card p-6 border-r-4 border-blue-500">
-                <h4 class="font-black text-blue-600 mb-2">مسجد معاذ بن جبل</h4>
-                <p class="text-[11px] font-bold text-slate-500 leading-relaxed">محمود العمصي، عبد الله العمصي، محمد العمصي.</p>
-            </div>
-            <div class="official-card p-6 border-r-4 border-pink-500">
-                <h4 class="font-black text-pink-600 mb-2">مسجد التابعين (للنساء)</h4>
-                <p class="text-[11px] font-bold text-slate-500 leading-relaxed">بإشراف أفنان أبو الحسن.</p>
-            </div>
-        </section>
-
-        <section id="adminGate" class="page py-20">
-            <div class="official-card p-8 text-center max-w-sm mx-auto">
-                <h2 class="font-black mb-6">لوحة المحفظين</h2>
-                <input type="password" id="sysPass" class="w-full text-center mb-6 h-16 bg-slate-50 rounded-xl" placeholder="كلمة المرور">
-                <button onclick="checkAdmin()" class="w-full bg-slate-900 text-white py-4 rounded-xl font-black">دخول</button>
-            </div>
-        </section>
-
-        <section id="honor" class="page space-y-4">
-            <h2 class="text-2xl font-black text-center py-6 font-amiri italic">حائط الشرف</h2>
-            <div id="honorList" class="space-y-3"></div>
-        </section>
-
-        <section id="teacher" class="page space-y-6">
-            <div class="official-card p-8">
-                <h3 class="text-xl font-black mb-6">المساعد الصوتي</h3>
-                <select id="surahSelect" class="w-full bg-slate-50 p-4 rounded-xl font-bold mb-4 outline-none border-none">
-                    <option value="001">الفاتحة</option>
-                    <option value="036">سورة يس</option>
-                    <option value="067">سورة الملك</option>
-                    <option value="078">سورة النبأ</option>
-                </select>
-                <button onclick="playAudio()" class="w-full bg-slate-900 text-white py-4 rounded-xl font-black">تشغيل (المنشاوي)</button>
-                <audio id="quranAudio" controls class="w-full mt-6 hidden"></audio>
             </div>
         </section>
 
     </main>
 
-    <nav class="bottom-nav">
-        <div onclick="goToPage('home')" class="nav-item active" id="nav-home"><i class="fas fa-home text-xl mb-1"></i>الرئيسية</div>
-        <div onclick="goToPage('student')" class="nav-item" id="nav-student"><i class="fas fa-user text-xl mb-1"></i>ملفي</div>
-        <div onclick="goToPage('honor')" class="nav-item" id="nav-honor"><i class="fas fa-medal text-xl mb-1"></i>الأبطال</div>
-        <div onclick="goToPage('teacher')" class="nav-item" id="nav-teacher"><i class="fas fa-headphones text-xl mb-1"></i>المعلم</div>
+    <nav class="tab-bar">
+        <div onclick="goToPage('home')" class="nav-link active" id="n-home"><i class="fas fa-home text-lg block mb-1"></i>الرئيسية</div>
+        <div onclick="goToPage('mosques')" class="nav-link" id="n-mosques"><i class="fas fa-mosque text-lg block mb-1"></i>المساجد</div>
+        <div onclick="goToPage('student')" class="nav-link" id="n-student"><i class="fas fa-user-graduate text-lg block mb-1"></i>ملفي</div>
+        <div onclick="goToPage('register')" class="nav-link" id="n-register"><i class="fas fa-user-plus text-lg block mb-1"></i>تسجيل</div>
     </nav>
 
     <script src="js/app.js"></script>
